@@ -11,3 +11,4 @@ Route::get('/', [DashboardController::class, 'index'])->name('principal');
 Route::get('/personas', [PersonasController::class, 'index'])->name('personas.index');
 Route::get('/personas/create', [PersonasController::class, 'create'])->name('personas.create');
 Route::post('/personas/store', [PersonasController::class, 'store'])->name('personas.store');
+Route::get('/personas/show', [PersonasController::class, 'show'])->name('personas.show');

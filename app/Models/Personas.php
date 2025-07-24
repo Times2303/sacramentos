@@ -9,4 +9,9 @@ use Illuminate\Testing\Fluent\Concerns\Has;
 class Personas extends Model
 {
     use HasFactory;
+
+    // Enlace con tabla TipoIdentificacion
+    public function tipoidentificacion(){
+    return $this->belongsTo(tipoidentificacion::class, 'fkTipoIdentificacion');
+    }
 }

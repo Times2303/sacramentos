@@ -14,7 +14,8 @@ class PersonasController extends Controller
     public function index()
     {
         //pagina de inicio
-        return view('modules/InicioPersona');
+        $datos = Personas::with('tipoidentificacion')->paginate(10); //trae los datos de la tabla tipoidentificacion
+        return view('modules/InicioPersona', compact('datos'));
 
     }
 
@@ -59,7 +60,7 @@ class PersonasController extends Controller
 
     public function show(Personas $personas)
     {
-        // para obtener un registro de nuestra tabla
+        
     }
 
     public function edit(Personas $personas)
