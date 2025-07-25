@@ -1,7 +1,7 @@
 @extends('layout.dashboard')
 
 @section('contenido')
-
+<link rel="stylesheet" href="{{ asset('css/personal.css') }}">
 <div class="container mt-4">
     <div class="row">
         <div class="col">
@@ -13,36 +13,35 @@
                     <table class="table table-sm table-bordered text-center align-middle">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Tipo</th>
                                 <th>Número</th>
                                 <th>Nombre</th>
                                 <th>Apellido paterno</th>
                                 <th>Apellido materno</th>
-                                <th>Acciones</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                         @forelse ($datos as $item)
                             <tr>
-                                <td>{{ $item -> idPersonas}}</td>
                                 <td>{{ $item -> tipoidentificacion->nom_tipo}}</td>
                                 <td>{{ $item -> numero_identificacion}}</td>
                                 <td>{{ $item -> nombres}}</td>
                                 <td>{{ $item -> apellido1}}</td>
                                 <td>{{ $item -> apellido2}}</td>
                                 <td>
-                                    <form action="">
+                                    <form action="{{ route('personas.destroy', $item->idPersonas)}}" method="post">
                                         @csrf
+                                        @method('DELETE')
                                         <a href="#" class="btn btn-outline-info "><i class="fa-solid fa-clipboard-list"></i></a>
-                                        <a href="#" class="btn btn-outline-warning"><i class="fa-solid fa-user-pen"></i></a>
-                                        <a href="#" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></a>
+                                        <a href="{{ route('personas.edit', $item->idPersonas) }}" class="btn btn-outline-warning"><i class="fa-solid fa-user-pen"></i></a>
+                                        <button type="submit" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td>NO HAY DATOS EN LA TABLA...</td>
+                                <td colspan="7">No hay datos en la tabla...</td>
                             </tr>
                         @endforelse
                         </tbody>

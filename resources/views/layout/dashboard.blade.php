@@ -8,7 +8,7 @@
 
     
 	<!-- Vincular CSS desde public/css -->
-    <link rel="stylesheet" href="{{ asset('style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 	<title>AdminSite</title>
 </head>
@@ -218,7 +218,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Vincular JS desde public/js -->
-    <script src="{{ asset('script.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
     
 
 </body>

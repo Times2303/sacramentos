@@ -8,7 +8,8 @@ use Illuminate\Testing\Fluent\Concerns\Has;
 
 class Personas extends Model
 {
-    use HasFactory;
+    protected $table = 'personas';
+    protected $primaryKey = 'idPersonas';
 
     // Enlace con tabla TipoIdentificacion
     public function tipoidentificacion(){

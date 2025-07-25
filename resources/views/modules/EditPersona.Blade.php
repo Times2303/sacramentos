@@ -1,52 +1,53 @@
-    @extends('layout.dashboard')
+@extends('layout.dashboard')
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     @section('contenido')
         <div class="card">
-        <div class="card-header">Nueva persona</div>
+        <div class="card-header">Actualizar datos</div>
         <div class="card-body">
-            
-            <form action="{{ route('personas.store') }}" method="POST">
+            <form action="{{ route('personas.update', $personas->idPersonas) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="row">
                     {{-- Columna izquierda --}}
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="tipo_identificacion">Tipo de identificación</label>
-                            <select required class="form-select rounded-0" id="tipo_identificacion" name="tipo_identificacion">
-                                <option selected disabled {{ old('tipo_identificacion') ? '' : 'selected' }}>Seleccione una opción</option>
+                            <select class="form-select rounded-0" id="tipo_identificacion" name="tipo_identificacion">
+                                <option disabled>Seleccione una opción</option>
                                 @foreach ($tipos as $tipo)
                                     <option value="{{ $tipo->idTipoIdentificacion }}"
-                                        {{ old('tipo_identificacion') == $tipo->idTipoIdentificacion ? 'selected' : '' }}>
+                                        @if ($tipo->idTipoIdentificacion == $personas->fkTipoIdentificacion) selected @endif>
                                         {{ $tipo->nom_tipo }}
                                     </option>
                                 @endforeach
                             </select>
+
                         </div>
 
                         <div class="mb-3">
                             <label for="numero_identificacion">Número de identificación</label>
-                            <input required type="text" class="form-control rounded-0" id="numero_identificacion" name="numero_identificacion" value="{{ old('numero_identificacion') }}">
+                            <input type="text" class="form-control rounded-0" id="numero_identificacion" name="numero_identificacion" value="{{ $personas->numero_identificacion }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="nombres">Nombre completo</label>
-                            <input required type="text" class="form-control rounded-0" id="nombres" name="nombres" value="{{ old('nombres') }}">
+                            <input type="text" class="form-control rounded-0" id="nombres" name="nombres" value="{{ $personas->nombres }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="apellido1">Apellido Paterno</label>
-                            <input required type="text" class="form-control rounded-0" id="apellido1" name="apellido1" value="{{ old('apellido1') }}">
+                            <input type="text" class="form-control rounded-0" id="apellido1" name="apellido1" value="{{ $personas->apellido1 }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="apellido2">Apellido Materno</label>
-                            <input required type="text" class="form-control rounded-0" id="apellido2" name="apellido2" value="{{ old('apellido2') }}">
+                            <input type="text" class="form-control rounded-0" id="apellido2" name="apellido2" value="{{ $personas->apellido2 }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="fec_nacimiento">Fecha de Nacimiento</label>
-                            <input required type="date" class="form-control rounded-0" id="fec_nacimiento" name="fec_nacimiento" value="{{ old('fec_nacimiento') }}">
+                            <input type="date" class="form-control rounded-0" id="fec_nacimiento" name="fec_nacimiento" value="{{ $personas->fec_nacimiento }}">
                         </div>
                     </div>
 
@@ -54,17 +55,17 @@
                     <div class="col-md-6">
                         <div class="mb-3 ">
                             <label for="celular">Número de Celular</label>
-                            <input required type="text" class="form-control rounded-0" id="celular" name="celular" value="{{ old('celular') }}">
+                            <input type="text" class="form-control rounded-0" id="celular" name="celular" value="{{ $personas->celular }}">
                         </div>
 
                         <div class="mb-3 ">
                             <label for="email">Email</label>
-                            <input required type="text" class="form-control rounded-0" id="email" name="email" value="{{ old('email') }}">
+                            <input type="text" class="form-control rounded-0" id="email" name="email" value="{{ $personas->email }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="direccion">Dirección de su hogar</label>
-                            <input required type="text" class="form-control rounded-0" id="direccion" name="direccion" value="{{ old('direccion') }}">
+                            <input type="text" class="form-control rounded-0" id="direccion" name="direccion" value="{{ $personas->direccion }}">
                         </div>
                     </div>
                 </div>
@@ -72,7 +73,7 @@
                 {{-- Botones --}}
                 <div class="text-end mt-4">
                     <a href="{{ route('personas.index') }}" class="btn btn-outline-secondary col-md-2 rounded-0">Cancelar</a>
-                    <button type="submit" class="btn btn-outline-primary col-md-2 rounded-0">Registrar</button>
+                    <button type="submit" class="btn btn-outline-warning col-md-2 rounded-0">Actualizar</button>
                 </div>
             </form>
         </div>
