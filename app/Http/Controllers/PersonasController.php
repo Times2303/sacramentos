@@ -11,18 +11,36 @@ use Illuminate\Support\Str;
 class PersonasController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     {
-        //pagina de inicio
-        $datos = Personas::with('tipoidentificacion')->paginate(10); //trae los datos de la tabla tipoidentificacion
-        return view('modules/InicioPersona', compact('datos'));
+    // Obtener el texto a buscar desde el input 'buscar'
+    $busqueda = $request->input('buscar');
 
+    // Consulta con relación a tipoidentificacion
+    $query = Personas::with('tipoidentificacion');
+    
+
+    // Si hay búsqueda, se aplica el filtro
+    if (!empty($busqueda)) {
+        $query->where(function ($q) use ($busqueda) {
+            $q  ->where('nombres', 'LIKE', "%$busqueda%")
+                ->orWhere('apellido1', 'LIKE', "%$busqueda%")
+                ->orWhere('apellido2', 'LIKE', "%$busqueda%")
+                ->orWhere('numero_identificacion', 'LIKE', "%$busqueda%");
+        });
+    }
+
+    // Obtener los resultados paginados y mantener el filtro en la URL
+    $datos = $query->paginate(10)->appends(['buscar' => $busqueda]);
+
+    // Retornar la vista con los datos y el texto buscado
+    return view('modules.persona.InicioPersona', compact('datos', 'busqueda'));
     }
 
     public function create()
     {
         $tipos = TipoIdentificacion::all(); // Aquí obtienes los tipos
-    return view('modules/CreatePersona', compact('tipos')); // Y los pasas a la vista
+    return view('modules.persona.CreatePersona', compact('tipos')); // Y los pasas a la vista
         
     }
 
@@ -68,7 +86,7 @@ class PersonasController extends Controller
         // Este metodo sirve para traer datos de la bd y mostrarlos en un formulario para editar (vista)
         $personas->load('tipoidentificacion'); // Trae los datos de la persona a editar
         $tipos = TipoIdentificacion::all();
-        return view('modules/EditPersona', compact('personas', 'tipos'));
+        return view('modules.persona.EditPersona', compact('personas', 'tipos'));
     }
 
     public function update(Request $request, Personas $personas)

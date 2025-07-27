@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+	<link rel="stylesheet" href="{{ asset('css/personal.css') }}">
     
 	<!-- Vincular CSS desde public/css -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -19,11 +19,13 @@
 		<a href="#" class="brand"><i class="fa-solid fa-user"></i></a>
 		<ul class="side-menu">
 			<li><a href="{{ route('principal') }}" class="active"><i class='fa-solid fa-table-columns icon' ></i> Principal</a></li>
-             <!-- Etiqueta -->
+            <!-- Etiqueta -->
 			<li class="divider" data-text="Vistas">Vistas</li>
             
             <!-- Desplegable -->
 			<li><a href="{{route('personas.index')}}"><i class="fa-solid fa-user icon"></i>Personas</a></li>
+			<li><a href="{{route('sacerdotes.index')}}"><i class="fa-solid fa-user-nurse icon"></i>Sacerdotes</a></li>
+			<li><a href="{{route('parroquias.index')}}"><i class="fa-solid fa-place-of-worship icon"></i>Parroquias</a></li>
 
 			<li>
 				<a href="#"><i class='bx bxs-inbox icon' ></i> Elements <i class='bx bx-chevron-right icon-right' ></i></a>
@@ -81,7 +83,6 @@
 
 		<!-- MAIN -->
 		<main class="main-content">
-			<h1 class="title center-text">Bienvenido Nombre</h1>
 			@include('partials.alertas')
             @yield('contenido')
 			<!--<ul class="breadcrumbs"> ESTE ES EL HOME/DASHBOARD

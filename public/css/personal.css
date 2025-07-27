@@ -1,11 +1,3 @@
-.table td, .table th {
-    padding: 2 !important;
-}
-.table .btn {
-    padding: 4px 8px; /* altura, anchura */
-    width: 20%;       /* botón más largo */
-    font-size: 12px;   /* opcional: texto más compacto */
-}
-.table tr {
-    line-height: 1; /* reduce altura vertical de las filas */
+.texto-rojo {
+    color: rgb(180, 11, 11);
 }
