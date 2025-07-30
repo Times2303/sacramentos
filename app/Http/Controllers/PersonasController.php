@@ -13,34 +13,15 @@ class PersonasController extends Controller
     
     public function index(Request $request)
     {
-    // Obtener el texto a buscar desde el input 'buscar'
-    $busqueda = $request->input('buscar');
-
-    // Consulta con relación a tipoidentificacion
-    $query = Personas::with('tipoidentificacion');
-    
-
-    // Si hay búsqueda, se aplica el filtro
-    if (!empty($busqueda)) {
-        $query->where(function ($q) use ($busqueda) {
-            $q  ->where('nombres', 'LIKE', "%$busqueda%")
-                ->orWhere('apellido1', 'LIKE', "%$busqueda%")
-                ->orWhere('apellido2', 'LIKE', "%$busqueda%")
-                ->orWhere('numero_identificacion', 'LIKE', "%$busqueda%");
-        });
-    }
-
-    // Obtener los resultados paginados y mantener el filtro en la URL
-    $datos = $query->paginate(10)->appends(['buscar' => $busqueda]);
-
-    // Retornar la vista con los datos y el texto buscado
-    return view('modules.persona.InicioPersona', compact('datos', 'busqueda'));
+    $tipos = TipoIdentificacion::all();
+    $personas = Personas::paginate(10);
+    return view('modules.persona.InicioPersona', compact('tipos', 'personas'));
     }
 
     public function create()
     {
         $tipos = TipoIdentificacion::all(); // Aquí obtienes los tipos
-    return view('modules.persona.CreatePersona', compact('tipos')); // Y los pasas a la vista
+        return view('modules.persona.CreatePersona', compact('tipos')); // Y los pasas a la vista
         
     }
 

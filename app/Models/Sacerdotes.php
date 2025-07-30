@@ -22,4 +22,5 @@ class Sacerdotes extends Model
     {
         return $this->belongsTo(Parroquias::class, 'fkParroquias', 'idParroquias');
     }
+    
 }

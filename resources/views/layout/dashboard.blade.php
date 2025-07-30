@@ -16,7 +16,8 @@
 	
 	<!-- SIDEBAR -->
 	<section id="sidebar">
-		<a href="#" class="brand"><i class="fa-solid fa-user"></i></a>
+		<a href="#" class="brand"><i class="fa-solid fa-user icon"></i></a>
+
 		<ul class="side-menu">
 			<li><a href="{{ route('principal') }}" class="active"><i class='fa-solid fa-table-columns icon' ></i> Principal</a></li>
             <!-- Etiqueta -->
@@ -26,6 +27,7 @@
 			<li><a href="{{route('personas.index')}}"><i class="fa-solid fa-user icon"></i>Personas</a></li>
 			<li><a href="{{route('sacerdotes.index')}}"><i class="fa-solid fa-user-nurse icon"></i>Sacerdotes</a></li>
 			<li><a href="{{route('parroquias.index')}}"><i class="fa-solid fa-place-of-worship icon"></i>Parroquias</a></li>
+			<li><a href="{{route('ceremonias.index')}}"><i class="fa-solid fa-book-bible icon"></i>Misas</a></li>
 
 			<li>
 				<a href="#"><i class='bx bxs-inbox icon' ></i> Elements <i class='bx bx-chevron-right icon-right' ></i></a>
@@ -63,14 +65,10 @@
 		<nav>
 			<i class='bx bx-menu toggle-sidebar' ></i>
 			<form action="#">
-				<div class="form-group">
-					<input type="text" placeholder="Search...">
-					<i class='bx bx-search icon' ></i>
-				</div>
 			</form>
 			<span class="divider"></span>
 			<div class="profile">
-				<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+				 <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
 				<ul class="profile-link">
 					<li><a href="#"><i class='bx bxs-user-circle icon' ></i> Profile</a></li>
 					<li><a href="#"><i class='bx bxs-cog' ></i> Settings</a></li>

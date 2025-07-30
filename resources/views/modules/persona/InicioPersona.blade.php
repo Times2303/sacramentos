@@ -1,5 +1,4 @@
 @extends('layout.dashboard')
-
 @section('contenido')
 <div class="container mt-4">
     <div class="row">
@@ -35,7 +34,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @forelse ($datos as $item)
+                        @forelse ($personas as $item)
                             <tr>
                                 <td>{{ $item->tipoidentificacion->nom_tipo}}</td>
                                 <td>{{ $item->numero_identificacion}}</td>
@@ -64,7 +63,7 @@
                         </tbody>
                     </table>
                         <div class="d-flex justify-content-end">
-                            {{ $datos->links() }} {{-- ya que solo muestra 10 registros, esto hace que haya una paginacion --}}
+                            {{ $personas->links() }} {{-- ya que solo muestra 10 registros, esto hace que haya una paginacion --}}
                         </div>
                 </div>
             </div>

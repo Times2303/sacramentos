@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PersonasController;
+use App\Http\Controllers\CeremoniasController;
 use App\Http\Controllers\SacerdotesController;
 use App\Http\Controllers\ParroquiasController;
 use App\Http\Controllers\DashboardController;
@@ -8,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 // RUTA PARA EL PRINCIPAL
 Route::get('/', [DashboardController::class, 'index'])->name('principal');
+Route::get('/personas/modal', [PersonasController::class, 'modal'])->name('personas.modal');
 
 // RUTAS PARA PERSONAS
 Route::get('/personas', [PersonasController::class, 'index'])->name('personas.index');
@@ -30,4 +32,11 @@ Route::delete('/sacerdotes/destroy/{id}', [SacerdotesController::class, 'destroy
 
 //RUTAS PARA PARROQUIAS
 Route::get('/parroquias', [ParroquiasController::class, 'index'])->name('parroquias.index');
-Route::get('/parroquias/create', [ParroquiasController::class, 'create'])->name('parroquias.create');
+Route::post('/parroquias/store', [ParroquiasController::class, 'store'])->name('parroquias.store');
+Route::get('/parroquias/edit/{id}', [ParroquiasController::class, 'edit'])->name('parroquias.edit');
+Route::put('/parroquias/update/{id}', [ParroquiasController::class, 'update'])->name('parroquias.update');
+Route::delete('/parroquias/destroy/{id}', [ParroquiasController::class, 'destroy'])->name('parroquias.destroy');
+
+//RUTAS PARA CEREMONIAS
+Route::get('/ceremonias', [CeremoniasController::class, 'index'])->name('ceremonias.index');
+Route::get('/ceremonias/create', [CeremoniasController::class, 'create'])->name('ceremonias.create');
